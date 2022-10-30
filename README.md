@@ -1,3 +1,9 @@
+# Trabalho da matéria de Laboratório de Desenvolvimento Web
+Alunos:
+* Fábio
+* Lincoln
+
+
 ### Para baixar as dependências do projeto, use:
 
 ```
@@ -7,7 +13,7 @@ npm i
 ### Para executar o projeto, use:
 
 ```
-### npm run start
+npm run start
 ```
 
 ### Para acessar o projeto, use:
