@@ -1,3 +1,34 @@
+// import Aluno from "../models/Aluno.js";
+// import bcrypt from "bcryptjs";
+// import jwt from "jsonwebtoken";
+// import { createError } from "../utils/error.js";
+
+// export const login = async (req, res, next) => {
+//   console.log("login: " + req.body.email + " " + req.body.senha);
+//   try {
+//     const aluno = await Aluno.findOne({ email: req.body.email });
+//     if (!aluno) {
+//       return next(createError(404, "Aluno não encontrado."));
+//     }
+//     const senhaValida = await bcrypt.compare(req.body.senha, aluno.senha);
+//     if (!senhaValida) {
+//       return next(createError(401, "Senha inválida."));
+//     }
+//     const { senha, ...dados } = aluno._doc;
+//     const accessToken = jwt.sign(
+//       { id: aluno._id, admin: aluno.ativo },
+//       process.env.JWT_SECRET,
+//       { expiresIn: "1h" }
+//     );
+//     res
+//       .cookie("accessToken", accessToken, { httpOnly: true })
+//       .status(200)
+//       .json(dados);
+//   } catch (error) {
+//     next(error);
+//   }
+// };
+
 import Aluno from "../models/Aluno.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -13,16 +44,16 @@ export const login = async (req, res, next) => {
     if (!senhaValida) {
       return next(createError(401, "Senha inválida."));
     }
-    const { senha, ...dados } = aluno._doc;
+    const { _id, email, nome, ...dados } = aluno._doc;
     const accessToken = jwt.sign(
-      { id: aluno._id, admin: aluno.ativo },
+      { id: aluno._id, ativo: aluno.ativo },
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
+    //res.cookie("token", accessToken, { httpOnly: false }).status(200).json(dados);
     res
-      .cookie("accessToken", accessToken, { httpOnly: true })
       .status(200)
-      .json(dados);
+      .json({ id: _id, email, nome, ativo: aluno.ativo, accessToken });
   } catch (error) {
     next(error);
   }

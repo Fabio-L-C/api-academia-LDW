@@ -4,10 +4,11 @@ import { API } from "./api";
 
 const API_URL = API + "auth/";
 
-export const login = async (usuario, senha, lembrar) => {
+export const login = async (email, senha, lembrar) => {
+  console.log("login: " + email + " " + senha + " " + lembrar);
   let logado = false;
   await axios
-    .post(API_URL + "login", { usuario, senha, lembrar })
+    .post(API_URL + "login", { email, senha, lembrar })
     .then((response) => {
       if (response.status === 200) {
         if (response.data.accessToken) {
