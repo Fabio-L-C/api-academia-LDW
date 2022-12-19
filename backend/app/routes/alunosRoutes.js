@@ -12,5 +12,5 @@ router.post("/", verificarToken, createAluno);
 router.put("/:id", verificarToken, updateAluno);
 router.delete("/:id", verificarToken, deleteAluno);
 router.get("/:id", verificarToken, getAluno);
-router.get("/", verificarToken, getAlunos);
+router.get("/", getAlunos);
 export default router;

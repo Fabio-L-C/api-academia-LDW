@@ -1,31 +1,31 @@
-import axios from "axios";
+// import axios from "axios";
 import { useEffect, useState } from "react";
 import {
-  authHeader,
+  // authHeader,
   getUser,
   isAuthenticated,
 } from "../../../services/authServices";
 
 const Ativos = () => {
-  const [dados, setDados] = useState([]);
+  // const [dados, setDados] = useState([]);
   const [usuario, setUsuario] = useState({});
 
-  const getDados = async () => {
-    await axios
-      .get("http://localhost:8080/api/alunos/ativos", { headers: authHeader() })
-      .then((response) => {
-        if (response.status === 200) {
-          setDados(response.data);
-        } else if (response.status === 403) {
-          setDados([]);
-        } else {
-          console.log("GET_ATIVOS_ERROR: " + response);
-        }
-      })
-      .catch((error) => {
-        //console.log(error);
-      });
-  };
+  // const getDados = async () => {
+  //   await axios
+  //     .get("http://localhost:8080/api/alunos/ativos", { headers: authHeader() })
+  //     .then((response) => {
+  //       if (response.status === 200) {
+  //         setDados(response.data);
+  //       } else if (response.status === 403) {
+  //         setDados([]);
+  //       } else {
+  //         console.log("GET_ATIVOS_ERROR: " + response);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       //console.log(error);
+  //     });
+  // };
 
   const getUsuario = async () => {
     if (isAuthenticated()) {
@@ -34,7 +34,7 @@ const Ativos = () => {
   };
 
   useEffect(() => {
-    getDados();
+    // getDados();
     getUsuario();
   }, []);
 
@@ -50,9 +50,9 @@ const Ativos = () => {
             et alias atque pariatur incidunt dolorem.
           </p>
           <ul>
-            {dados.map((item) => (
+            {/* {dados.map((item) => (
               <li key={item._id}>{item.nome}</li>
-            ))}
+            ))} */}
           </ul>
         </>
       ) : (
