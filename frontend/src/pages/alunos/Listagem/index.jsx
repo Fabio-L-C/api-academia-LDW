@@ -1,30 +1,17 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Loading from "../../../components/Loading";
 import TableAlunos from "../../../components/TableAlunos";
-import { authHeader } from "../../../services/authServices";
+import { loadAlunos } from "../../../services/alunosService";
 import "./style.css";
 
 const Listagem = () => {
   const [alunos, setAlunos] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const carregarAlunos = () => {
-    axios
-      .get("http://localhost:8080/api/alunos", { headers: authHeader() })
-      .then((response) => {
-        setAlunos(response.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
   useEffect(() => {
-    carregarAlunos();
-  });
+    loadAlunos(setAlunos, setLoading);
+  }, []);
 
   return (
     <>
