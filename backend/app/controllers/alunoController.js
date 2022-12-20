@@ -1,14 +1,21 @@
 import Aluno from "../models/Aluno.js";
 import bcrypt from "bcryptjs";
+import { createError } from "../utils/error.js";
 
 export const createAluno = async (req, res, next) => {
+  const confSenha = req.body.confSenha;
   const aluno = new Aluno(req.body);
   try {
-    let salt = await bcrypt.genSalt(10);
-    let hashSenha = await bcrypt.hash(aluno.senha, salt);
-    aluno.senha = hashSenha;
-    const createdAluno = await aluno.save();
-    res.status(201).json(createdAluno);
+    if (aluno.senha != confSenha) {
+      createError({ statusCode: 400, message: "As senhas não conferem." });
+    } else {
+      let salt = await bcrypt.genSalt(10);
+      let hashSenha = await bcrypt.hash(aluno.senha, salt);
+      aluno.senha = hashSenha;
+      const createdAluno = await aluno.save();
+      console.log("Aluno criado: ", createdAluno);
+      res.status(201).json(createdAluno);
+    }
   } catch (error) {
     next(error);
   }
@@ -51,6 +58,16 @@ export const getAlunos = async (req, res, next) => {
   try {
     const alunos = await Aluno.find();
     res.status(200).json(alunos);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getAlunosAtivos = async (req, res, next) => {
+  try {
+    const alunosAtivos = await Aluno.find();
+    console.log(alunosAtivos);
+    res.status(200).json(alunosAtivos);
   } catch (error) {
     next(error);
   }

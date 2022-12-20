@@ -1,11 +1,13 @@
 import express from "express";
 import { login } from "../controllers/authController.js";
 import {
-  verificarAdmin,
+  verificarAtivo,
   verificarToken,
   verificarUsuario,
 } from "../utils/verificarToken.js";
+
 const router = express.Router();
+
 router.post("/login", login);
 
 router.get("/verificartoken", verificarToken, (req, res) => {
@@ -18,8 +20,8 @@ router.get("/verificarusuario/:id", verificarUsuario, (req, res) => {
   });
 });
 
-router.get("/verificaradmin/:id", verificarAdmin, (req, res) => {
-  res.status(200).json({ message: "O id passado é de um administrador." });
+router.get("/verificarativo/:id", verificarAtivo, (req, res) => {
+  res.status(200).json({ message: "O id passado é de um usuário ativo." });
 });
 
 export default router;

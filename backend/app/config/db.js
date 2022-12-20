@@ -15,4 +15,5 @@ mongoose.connection.on("connected", () => {
 mongoose.connection.on("error", (error) => {
   console.log(`Erro no MongoDB:\n${error}`);
 });
+
 export default connectDatabase;

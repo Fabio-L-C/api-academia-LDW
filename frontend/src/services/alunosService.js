@@ -1,7 +1,6 @@
 //baseado em https://www.bezkoder.com/react-jwt-auth/
 import axios from "axios";
 import { API } from "./api";
-import bootstrap from "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 import { authHeader } from "./authServices";
 
@@ -16,5 +15,17 @@ export const loadAlunos = (setAlunos, setLoading) => {
     })
     .catch((error) => {
       console.log(error);
+    });
+};
+
+export const removeAluno = (id) => {
+  axios
+    .delete(API_URL + id, { headers: authHeader() })
+    .then((response) => {
+      return true;
+    })
+    .catch((error) => {
+      console.log(error);
+      return false;
     });
 };

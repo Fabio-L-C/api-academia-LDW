@@ -1,16 +1,18 @@
 import express from "express";
-import { verificarToken } from "../utils/verificarToken.js";
+import { verificarAtivo } from "../utils/verificarToken.js";
 import {
   createAluno,
   updateAluno,
   deleteAluno,
   getAluno,
   getAlunos,
+  // getAlunosAtivos,
 } from "../controllers/AlunoController.js";
 const router = express.Router();
-router.post("/", verificarToken, createAluno);
-router.put("/:id", verificarToken, updateAluno);
-router.delete("/:id", verificarToken, deleteAluno);
-router.get("/:id", verificarToken, getAluno);
+// router.get("/ativos", verificarAtivo, getAlunosAtivos);
+router.post("/", createAluno);
+router.put("/:id", updateAluno);
+router.delete("/:id", deleteAluno);
+router.get("/:id", getAluno);
 router.get("/", getAlunos);
 export default router;
