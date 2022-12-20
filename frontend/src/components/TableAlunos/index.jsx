@@ -6,7 +6,7 @@ import ConfirmModal from "../ConfirmModal";
 import InformModal from "../InformModal";
 import { authHeader } from "../../services/authServices";
 
-const TableAlunos = ({ alunos, setAlunos }) => {
+const TableAlunos = ({ alunos, setAlunos, url }) => {
   const [alunoExcluir, setAlunoExcluir] = useState(null);
   const [modal, setModal] = useState(undefined);
 
@@ -19,7 +19,7 @@ const TableAlunos = ({ alunos, setAlunos }) => {
 
   function excluirAluno() {
     axios
-      .delete(`http://localhost:8080/api/alunos/${alunoExcluir._id}`, {
+      .delete(`http://localhost:8080/api/${url}/${alunoExcluir._id}`, {
         headers: authHeader(),
       })
       .then((data) => {
@@ -38,7 +38,7 @@ const TableAlunos = ({ alunos, setAlunos }) => {
   }
 
   return alunos.length === 0 ? (
-    <div className="alert alert-info">Nenhum aluno cadastrado</div>
+    <div className="alert alert-info">Nenhum {url} cadastrado</div>
   ) : (
     <>
       <table className="table table-striped">
@@ -69,7 +69,7 @@ const TableAlunos = ({ alunos, setAlunos }) => {
               <td>
                 <Link
                   className="btn btn-sm btn-warning me-1"
-                  to={`/alunos/alterar/${aluno._id}`}
+                  to={`/${url}/alterar/${aluno._id}`}
                 >
                   <i className="bi bi-pen"></i>
                 </Link>

@@ -6,10 +6,10 @@ import {
   deleteAluno,
   getAluno,
   getAlunos,
-  // getAlunosAtivos,
+  getAlunosAtivos,
 } from "../controllers/AlunoController.js";
 const router = express.Router();
-// router.get("/ativos", verificarAtivo, getAlunosAtivos);
+router.get("/ativos", verificarAtivo, getAlunosAtivos);
 router.post("/", createAluno);
 router.put("/:id", updateAluno);
 router.delete("/:id", deleteAluno);

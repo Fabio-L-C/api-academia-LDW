@@ -4,9 +4,9 @@ import { API } from "./api";
 
 import { authHeader } from "./authServices";
 
-const API_URL = API + "alunos/";
+const API_URL = API + "instrutores/";
 
-export const loadAlunos = (setAlunos, setLoading) => {
+export const loadInstrutores = (setAlunos, setLoading) => {
   axios
     .get(API_URL, { headers: authHeader() })
     .then((response) => {

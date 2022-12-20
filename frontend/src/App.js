@@ -7,11 +7,17 @@ import Principal from "./pages/Principal";
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
 import NotFound from "./pages/NotFound";
+
 // Alunos
 import Alunos from "./pages/alunos/Listagem";
 import Cadastro from "./pages/alunos/Cadastro";
 import Alteracao from "./pages/alunos/Alteracao";
 import Ativos from "./pages/alunos/Ativos";
+
+// Intrutores
+import Intrutores from "./pages/instrutores/Listagem";
+import CadastroI from "./pages/instrutores/Cadastro";
+import AlteracaoI from "./pages/instrutores/Alteracao";
 
 const App = () => {
   return (
@@ -20,11 +26,19 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Leiaute />}>
             <Route index element={<Principal />} />
+            {/*  */}
             <Route path="alunos">
               <Route index element={<Alunos />} />
               <Route path="cadastrar" element={<Cadastro />} />
               <Route path="alterar/:id" element={<Alteracao />} />
             </Route>
+            {/*  */}
+            <Route path="instrutores">
+              <Route index element={<Intrutores />} />
+              <Route path="cadastrar" element={<CadastroI />} />
+              <Route path="alterar/:id" element={<AlteracaoI />} />
+            </Route>
+            {/*  */}
             <Route path="ativos" element={<Ativos />} />
           </Route>
           <Route path="/login" element={<Login />} />

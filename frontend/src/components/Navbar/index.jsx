@@ -39,6 +39,9 @@ const Navbar = () => {
               <NavLink to="/alunos" className="nav-link">
                 Alunos
               </NavLink>
+              <NavLink to="/instrutores" className="nav-link">
+                Instrutores
+              </NavLink>
               {usuario.ativo && (
                 <NavLink to="/ativos" className="nav-link">
                   Ativos
